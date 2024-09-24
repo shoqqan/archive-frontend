@@ -1,3 +1,4 @@
+import React from 'react';
 import {Navigate, Route, Routes} from "react-router-dom";
 import {ROUTES} from "@/shared/lib/routes.ts";
 import {Home} from "@/pages/home";
