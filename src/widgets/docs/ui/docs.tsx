@@ -36,7 +36,7 @@ export const Docs = () => {
         }
     ];
     return (
-        <div className={'w-full px-[5rem] gap-y-3 flex flex-col justify-center'}>
+        <div className={'w-full px-[5rem] gap-y-3 flex flex-col justify-center xl:px-[1rem] mx-auto items-center'}>
             <div className={'flex items-center gap-x-3'}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      viewBox="0 0 256 256" className="text-accent-secondary-100">
@@ -45,10 +45,10 @@ export const Docs = () => {
                 </svg>
                 <h3>Ваши недавние документы</h3>
             </div>
-            <div className={'w-full flex flex-wrap gap-y-5 justify-between'}>
+            <div className={'grid grid-cols-3 xl:grid-cols-1'}>
                 {array.map((item, index) => (
                     <div key={index}
-                         className={'p-5 flex flex-col gap-y-5 w-48 border-solid rounded-2xl border-gray-500 bg-[#2B2B28]'}
+                         className={'p-5 flex flex-col gap-y-5 xl:w-full md:w-full mx-[1rem] my-[1rem] border-solid rounded-2xl border-gray-500 bg-[#2B2B28]'}
                          onClick={() => {
                              navigate(`/chat/${item.id}`)
                          }}
