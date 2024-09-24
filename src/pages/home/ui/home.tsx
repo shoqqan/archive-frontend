@@ -4,7 +4,6 @@ import {FileUploader} from "@/shared/ui/fileUploader.tsx";
 import {Docs} from "@/widgets/docs";
 
 export const Home = () => {
-
     return (
         <div className={'w-full h-full flex flex-col items-center gap-y-[3rem] lg:gap-y-3 gap-x-1 text-[#E5E5E2]'}>
             <Header/>
