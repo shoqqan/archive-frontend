@@ -5,7 +5,7 @@ import {Chat} from "@/pages/chat";
 
 function App() {
     return (
-        <article className={'w-screen h-screen font-raleway'}>
+        <article className={'w-screen overflow-y-scroll bg-[#2B2B28] font-raleway'}>
             <Routes>
                 <Route path={ROUTES.HOME} element={<Home/>}/>
                 <Route path={ROUTES.CHAT} element={<Chat/>}/>
