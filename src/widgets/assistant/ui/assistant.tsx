@@ -1,8 +1,12 @@
 import React from 'react';
 import {Input} from "@/shared/ui/input.tsx";
 import {Message} from "@/shared/ui/message.tsx";
+import {useUnit} from "effector-react/effector-react.umd";
+import {$chat} from "@/pages/chat/model.ts";
+import {MessageSkeletons} from "@/shared/ui/messageSkeletons.tsx";
 
 export const Assistant = () => {
+    const chat = useUnit($chat)
     const messages = [{
         id: "msg1",
         chatId: "chat123",
@@ -69,9 +73,14 @@ export const Assistant = () => {
         <div
             className={'w-[45%] overflow-y-scroll relative bg-customlightgray h-full flex flex-col gap-y-5 rounded-xl border-solid border-gray-500 px-5 pt-5 xl:hidden'}>
             {
+                !chat.isChatLoading &&
                 messages.map((message, index) => (
                     <Message content={message.content} isUser={message.isUser} key={index}/>
                 ))
+            }
+            {
+                chat.isChatLoading &&
+                <MessageSkeletons/>
             }
             <div className={'sticky flex justify-center items-center bottom-0 bg-white h-[20rem] rounded-lg'}>
                 <Input className={'text-black placeholder-black'}

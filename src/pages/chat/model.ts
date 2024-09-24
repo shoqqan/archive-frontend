@@ -18,7 +18,7 @@ export const $chat = createStore({
     title: "",
     history: [],
     docs: [],
-    isChatLoading: false,
+    isChatLoading: true,
     isDocLoading: false
 })
     .on(createChatFx.doneData, ((_, response) => ({
