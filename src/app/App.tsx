@@ -6,6 +6,7 @@ import {Chat} from "@/pages/chat";
 import {Search} from "@/pages/search/ui/search.tsx";
 
 function App() {
+
     return (
         <article className={'w-screen overflow-y-scroll bg-[#2B2B28] font-raleway'}>
             <Routes>

@@ -2,6 +2,8 @@ import {Message} from "@/shared/ui/message.tsx";
 import {Input} from "@/shared/ui/input.tsx";
 import React, {useState} from "react";
 
+import { useTranslation } from "react-i18next";
+
 
 export const AssistantMob = () => {
     const messages = [{
@@ -66,6 +68,9 @@ export const AssistantMob = () => {
         }]
 
     const [isChatOpened, setIsChatOpened] = useState<boolean>(false)
+
+    const { t, ready } = useTranslation();
+
     return (
         <div>
             {isChatOpened &&
@@ -88,7 +93,7 @@ export const AssistantMob = () => {
                         }
                         <div className={'sticky flex justify-center items-center bottom-0 bg-white h-20 rounded-lg'}>
                             <Input className={'text-black placeholder-black'}
-                                   placeholder={'Напишите AI помошнику'}/>
+                                   placeholder={t("Input_chat_placeholder")}/>
                         </div>
                     </div>
                 </div>

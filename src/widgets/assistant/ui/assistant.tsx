@@ -5,6 +5,9 @@ import {useUnit} from "effector-react/effector-react.umd";
 import {$chat} from "@/pages/chat/model.ts";
 import {MessageSkeletons} from "@/shared/ui/messageSkeletons.tsx";
 
+import { useTranslation } from "react-i18next";
+
+
 export const Assistant = () => {
     const chat = useUnit($chat)
     const messages = [{
@@ -68,6 +71,7 @@ export const Assistant = () => {
             content: "Отлично, давайте рассмотрим каждую сущность по очереди."
         }]
 
+    const { t, ready } = useTranslation();
 
     return (
         <div
@@ -84,7 +88,7 @@ export const Assistant = () => {
             }
             <div className={'sticky flex justify-center items-center bottom-0 bg-white h-[20rem] rounded-lg'}>
                 <Input className={'text-black placeholder-black'}
-                       placeholder={'Напишите AI помошнику'}/>
+                       placeholder={t("Input_chat_placeholder")}/>
                 <div className={"mr-5"}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                          className="bi bi-send-fill" viewBox="0 0 16 16">

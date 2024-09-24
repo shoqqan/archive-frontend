@@ -2,14 +2,18 @@ import React from 'react';
 import {Input} from "@/shared/ui/input.tsx";
 import {Button} from "@/shared/ui/button.tsx";
 
+import { useTranslation } from "react-i18next";
+
 export function InputWithButton() {
+    const { t, i18n, ready } = useTranslation();
+
     return (
         <div className="flex w-full max-w-sm items-center space-x-2">
             <Input type="text"
                    className={'bg-[#393937] focus-visible:border-[#009FBD] focus-visible:border focus-visible:border-solid lg:w-full'}
-                   placeholder="Ключевое слово"/>
+                   placeholder={t("Header_input_placeholder")}/>
             <Button type="submit" className={'bg-customblue lg:hidden hover:bg-white hover:text-customblue'}>
-                Искать по документам
+                {t("Search_in_documents")}
             </Button>
             <Button type="submit" className='bg-customblue hidden lg:block hover:bg-white hover:text-customblue'>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

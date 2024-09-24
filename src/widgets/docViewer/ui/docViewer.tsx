@@ -12,15 +12,21 @@ import {
 } from "@mdxeditor/editor";
 import {Switch} from "@/shared/ui/switch.tsx";
 
+import { useTranslation } from "react-i18next";
+
+
 export const DocViewer = () => {
     const [markdown, setMarkdown] = useState<string>('Hello Worlds')
     const [isMarkdown, setIsMarkdown] = useState<boolean>(true)
+
+    const { t, ready } = useTranslation();
+
     return (
         <div
             className={'w-[45%] z-10 overflow-y-scroll relative bg-customlightgray h-full rounded-xl border-solid border-gray-500 xl:w-full'}>
             <div className={'w-full h-10 flex justify-center items-center gap-x-3 px-2 py-4 bg-customgray'}>
                 <p>
-                    {`${isMarkdown ? 'Переключить на фотографию' : 'Изменить документ '}`}
+                    {`${isMarkdown ? t("Switch_to_photo") : t("Switch_to_edit")}`}
                 </p>
                 <Switch checked={isMarkdown} onCheckedChange={() => {
                     setIsMarkdown(!isMarkdown)
