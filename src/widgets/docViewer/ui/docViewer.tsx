@@ -17,8 +17,8 @@ export const DocViewer = () => {
     const [isMarkdown, setIsMarkdown] = useState<boolean>(true)
     return (
         <div
-            className={'w-[45%] overflow-y-scroll relative bg-customlightgray h-full rounded-xl border-solid border-gray-500'}>
-            <div className={'w-full h-10 flex justify-center items-center gap-x-3 bg-customgray'}>
+            className={'w-[45%] z-10 overflow-y-scroll relative bg-customlightgray h-full rounded-xl border-solid border-gray-500 xl:w-full'}>
+            <div className={'w-full h-10 flex justify-center items-center gap-x-3 px-2 py-4 bg-customgray'}>
                 <p>
                     {`${isMarkdown ? 'Переключить на фотографию' : 'Изменить документ '}`}
                 </p>
