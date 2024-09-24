@@ -27,7 +27,7 @@ export const DocViewer = () => {
                 }}/>
             </div>
             {isMarkdown &&
-                <MDXEditor markdown="# Hello world"
+                <MDXEditor markdown={markdown}
                            className={'flex h-full'}
                            onChange={(editedText) => {
                                setMarkdown(editedText)
