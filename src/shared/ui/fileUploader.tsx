@@ -4,11 +4,12 @@ import {Label} from "@/shared/ui/label.tsx";
 import {useNavigate} from "react-router-dom";
 import {createChatFx} from "@/pages/chat/model.ts";
 
-import { useTranslation } from "react-i18next";
+import {useTranslation} from "react-i18next";
 
 export const FileUploader = () => {
     const navigate = useNavigate()
-    const { t, ready } = useTranslation();
+    const {t, ready} = useTranslation();
+
     return (
         <div className="w-[80%] flex flex-col items-center gap-1.5 lg:w-[90%]">
             <Label className={'self-start text-center'} htmlFor="picture">{t("Upload_photo_of_archive")}</Label>
@@ -19,6 +20,7 @@ export const FileUploader = () => {
                 const formData = new FormData();
                 formData.append('file', file);
                 const result = await createChatFx(formData)
+                navigate(`/chat/${result.chat_id}`)
             }}/>
         </div>
     );

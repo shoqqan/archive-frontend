@@ -3,10 +3,10 @@ import {Header} from "@/widgets/header";
 import {FileUploader} from "@/shared/ui/fileUploader.tsx";
 import {Docs} from "@/widgets/docs";
 
-import { useTranslation } from "react-i18next";
+import {useTranslation} from "react-i18next";
 
 export const Home = () => {
-    const { t, ready } = useTranslation();
+    const {t, ready} = useTranslation();
 
     return (
         <div className={'w-full h-full flex flex-col items-center gap-y-[3rem] lg:gap-y-3 gap-x-1 text-[#E5E5E2]'}>

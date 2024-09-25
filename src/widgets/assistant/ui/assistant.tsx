@@ -1,93 +1,41 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Input} from "@/shared/ui/input.tsx";
 import {Message} from "@/shared/ui/message.tsx";
 import {useUnit} from "effector-react/effector-react.umd";
-import {$chat} from "@/pages/chat/model.ts";
+import {$chat, createMessageFx} from "@/pages/chat/model.ts";
 import {MessageSkeletons} from "@/shared/ui/messageSkeletons.tsx";
 
-import { useTranslation } from "react-i18next";
+import {useTranslation} from "react-i18next";
 
 
 export const Assistant = () => {
-    const chat = useUnit($chat)
-    const messages = [{
-        id: "msg1",
-        chatId: "chat123",
-        isUser: true,
-        content: "Привет! Как дела?"
-    },
-        {
-            id: "msg2",
-            chatId: "chat123",
-            isUser: false,
-            content: "Здравствуйте! У меня всё хорошо, спасибо. Чем могу помочь?"
-        },
-        {
-            id: "msg3",
-            chatId: "chat123",
-            isUser: true,
-            content: "Мне нужна помощь с проектом."
-        },
-        {
-            id: "msg4",
-            chatId: "chat123",
-            isUser: false,
-            content: "Конечно, я буду рад помочь. Расскажите подробнее о вашем проекте."
-        },
-        {
-            id: "msg5",
-            chatId: "chat123",
-            isUser: true,
-            content: "Это веб-приложение для управления задачами."
-        },
-        {
-            id: "msg6",
-            chatId: "chat123",
-            isUser: false,
-            content: "Отлично! С чего бы вы хотели начать?"
-        },
-        {
-            id: "msg7",
-            chatId: "chat123",
-            isUser: true,
-            content: "Давайте начнем с планирования структуры базы данных."
-        },
-        {
-            id: "msg8",
-            chatId: "chat123",
-            isUser: false,
-            content: "Хорошая идея. Какие основные сущности вы планируете хранить?"
-        },
-        {
-            id: "msg9",
-            chatId: "chat123",
-            isUser: true,
-            content: "Пользователи, задачи и проекты."
-        },
-        {
-            id: "msg10",
-            chatId: "chat123",
-            isUser: false,
-            content: "Отлично, давайте рассмотрим каждую сущность по очереди."
-        }]
-
-    const { t, ready } = useTranslation();
-
+    const {isChatLoading, history, chatId} = useUnit($chat)
+    const {t, ready} = useTranslation();
+    const [text, setText] = useState<string>('')
     return (
         <div
             className={'w-[45%] overflow-y-scroll relative bg-customlightgray h-full flex flex-col gap-y-5 rounded-xl border-solid border-gray-500 px-5 pt-5 xl:hidden'}>
             {
-                !chat.isChatLoading &&
-                messages.map((message, index) => (
-                    <Message content={message.content} isUser={message.isUser} key={index}/>
+                !isChatLoading &&
+                history.map((message) => (
+                    <Message content={message.content} isUser={message.is_user} key={message.created_at}/>
                 ))
             }
             {
-                chat.isChatLoading &&
+                isChatLoading &&
                 <MessageSkeletons/>
             }
-            <div className={'sticky flex justify-center items-center bottom-0 bg-white h-[20rem] rounded-lg'}>
+            <div className={'absolute w-full flex justify-center items-center bottom-0 left-0 bg-white  rounded-lg'}>
                 <Input className={'text-black placeholder-black'}
+                       value={text}
+                       onChange={(e) => setText(e.target.value)}
+                       onKeyUp={(e) => {
+                           if (e.key === 'Enter') {
+                               if (text.trim() !== '') {
+                                   createMessageFx({chat_id: chatId, content: text})
+                               }
+                           }
+                       }}
                        placeholder={t("Input_chat_placeholder")}/>
                 <div className={"mr-5"}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

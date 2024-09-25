@@ -1,1 +1,1 @@
-export const APIURL = 'http://0.tcp.in.ngrok.io:17244'
+export const APIURL = 'http://38.180.206.57'
