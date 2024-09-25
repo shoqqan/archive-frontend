@@ -1,10 +1,16 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Header} from "@/widgets/header";
 import {Assistant} from "@/widgets/assistant/ui/assistant.tsx";
 import {DocViewer} from "@/widgets/docViewer/ui/docViewer.tsx";
 import {AssistantMob} from "@/widgets/assistantMob/ui/assistantMob.tsx";
+import {resetChat} from "@/pages/chat/model.ts";
 
 export const Chat = () => {
+    useEffect(() => {
+        return () => {
+            resetChat();
+        }
+    }, []);
     return (
         <div className={'w-full h-screen flex flex-col items-center gap-y-[2rem] lg:gap-y-[1rem] text-[#E5E5E2]'}>
             <Header/>

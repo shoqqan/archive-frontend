@@ -28,7 +28,7 @@ export const DocViewer = () => {
     const ref = React.useRef<MDXEditorMethods>(null)
     useEffect(() => {
         ref.current?.setMarkdown('')
-        const ws = new WebSocket(`ws://38.180.206.57/chat/streaming/${docId}`);
+        const ws = new WebSocket(`ws://20.218.128.189/chat/streaming/${docId}`);
 
         ws.onopen = () => {
             console.log('WebSocket connection established');
@@ -37,7 +37,11 @@ export const DocViewer = () => {
         ws.onmessage = (event) => {
             const data = event.data;
             const currentMarkdown = ref.current?.getMarkdown() + data
+            setMarkdown(currentMarkdown)
             ref.current?.setMarkdown(currentMarkdown)
+            if (data.includes('[close]')) {
+                ws.close()
+            }
         };
 
         ws.onclose = async () => {
@@ -48,7 +52,7 @@ export const DocViewer = () => {
         return () => {
             ws.close();
         };
-    }, [docId, id]);
+    }, [docId]);
     return (
         <div
             className={'w-[45%] z-10 overflow-y-scroll relative bg-customlightgray h-full rounded-xl border-solid border-gray-500 xl:w-full'}>

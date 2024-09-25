@@ -56,14 +56,13 @@ export const $chat = createStore(initialState)
             isChatLoading: false
         }
     }))
-    .on(addMessage, (state, message) => ({
-        ...state,
-        history: [...state.history, {content: message, is_user: true, createdAt: v4()}]
-    }))
-    .on(createMessageFx.doneData, (state, response) => ({
-        ...state,
-        docId: response.new_doc_version_id !== null ? response.new_doc_version_id : state.docId,
-        history: [...state.history, {content: response.content, is_user: false, createdAt: v4()}]
+    .on(createMessageFx.doneData, ((_, response) => {
+        console.log(response)
+        return {
+            ..._,
+            docId: response.new_doc_version_id !== null ? response.new_doc_version_id : _.docId,
+            history: [..._.history, {content: response.content, is_user: false, createdAt: v4()}]
+        }
     }))
 
 
@@ -73,4 +72,12 @@ export const resetChat = createEvent();
 $chat.on(resetChat, (() => {
     return {...initialState}
 }))
+
+$chat.on(addMessage, ((state, message) => {
+    return {
+        ...state,
+        history: [...state.history, {content: message, is_user: true, createdAt: v4()}]
+    }
+}))
+
 

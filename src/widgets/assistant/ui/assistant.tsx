@@ -29,10 +29,10 @@ export const Assistant = () => {
                 <Input className={'text-black placeholder-black'}
                        value={text}
                        onChange={(e) => setText(e.target.value)}
-                       onKeyUp={(e) => {
+                       onKeyUp={async (e) => {
                            if (e.key === 'Enter') {
                                if (text.trim() !== '') {
-                                   createMessageFx({chat_id: chatId, content: text})
+                                   await createMessageFx({chat_id: chatId, content: text})
                                }
                            }
                        }}
