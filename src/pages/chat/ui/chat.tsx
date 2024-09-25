@@ -2,7 +2,7 @@ import React from 'react';
 import {Header} from "@/widgets/header";
 import {Assistant} from "@/widgets/assistant/ui/assistant.tsx";
 import {DocViewer} from "@/widgets/docViewer/ui/docViewer.tsx";
-import {AssistantMob} from "@/widgets/chatMob/ui/assistantMob.tsx";
+import {AssistantMob} from "@/widgets/assistantMob/ui/assistantMob.tsx";
 
 export const Chat = () => {
     return (
