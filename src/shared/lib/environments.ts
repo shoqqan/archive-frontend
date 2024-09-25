@@ -1,1 +1,2 @@
-export const APIURL = 'http://20.218.128.189'
+export const APIURL = 'https://archive.wb.money'
+export const WSURL = 'ws://archive.wb.money/chat/streaming'

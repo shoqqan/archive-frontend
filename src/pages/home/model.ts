@@ -17,7 +17,6 @@ export const $home = createStore({
     userChats: [],
     isLoading: true
 })
-    .on(createChatFx.pending, ((_) => ({..._, isLoading: true})))
     .on(createChatFx.doneData, ((_) => ({..._, isLoading: false})))
     .on(getUserChatsFx.doneData, ((_, res) => ({..._, userChats: res, isLoading: false})))
 

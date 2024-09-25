@@ -17,6 +17,7 @@ import {
     toolbarPlugin,
     UndoRedo
 } from "@mdxeditor/editor";
+import {WSURL} from "@/shared/lib/environments.ts";
 
 
 export const DocViewer = () => {
@@ -28,7 +29,7 @@ export const DocViewer = () => {
     const ref = React.useRef<MDXEditorMethods>(null)
     useEffect(() => {
         ref.current?.setMarkdown('')
-        const ws = new WebSocket(`ws://20.218.128.189/chat/streaming/${docId}`);
+        const ws = new WebSocket(`${WSURL}/${docId}`);
 
         ws.onopen = () => {
             console.log('WebSocket connection established');
