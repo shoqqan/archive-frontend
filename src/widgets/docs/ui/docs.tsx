@@ -38,7 +38,7 @@ export const Docs = () => {
             </div>
             <div className={'grid grid-cols-3 xl:grid-cols-1'}>
                 {
-                    isLoading &&
+                    isLoading || userChats.length === 0 &&
 
                     skeletons.map((_, index) => (
                         <Skeleton key={index}/>

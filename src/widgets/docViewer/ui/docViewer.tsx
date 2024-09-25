@@ -24,7 +24,7 @@ export const DocViewer = () => {
     const [markdown, setMarkdown] = useState<string>('')
     const [isMarkdown, setIsMarkdown] = useState<boolean>(true)
     const {id} = useParams()
-    const {docId} = useUnit($chat)
+    const {docId, imageUrl} = useUnit($chat)
     const {t, ready} = useTranslation();
     const ref = React.useRef<MDXEditorMethods>(null)
     const downloadPDF = () => {
@@ -135,7 +135,7 @@ export const DocViewer = () => {
             }
             {!isMarkdown &&
                 <div className={'w-full h-full flex justify-center items-center'}>
-                    <img src={'images/header-logo.png'}/>
+                    <img src={imageUrl} alt={'photo'}/>
                 </div>
             }
 

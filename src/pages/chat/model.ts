@@ -41,7 +41,8 @@ const initialState = {
     history: [],
     docs: [],
     isChatLoading: true,
-    isDocLoading: false
+    isDocLoading: false,
+    imageUrl: null
 }
 export const $chat = createStore(initialState)
     .on(createChatFx.doneData, ((_, response) => {
@@ -53,7 +54,8 @@ export const $chat = createStore(initialState)
             history: response.messages,
             docs: response.doc_versions,
             title: response.title,
-            isChatLoading: false
+            isChatLoading: false,
+            imageUrl: response.image_url
         }
     }))
     .on(createMessageFx.doneData, ((_, response) => {
