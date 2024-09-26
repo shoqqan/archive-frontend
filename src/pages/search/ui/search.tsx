@@ -74,7 +74,7 @@ export const Search = () => {
             <Header/>
 
             <div className="flex-wrap flex gap-4 w-[70%]">
-                {(docs.length == 0 || isLoading) &&
+                {(docs?.length == 0 || isLoading) &&
                     res.map(() => (
                         <Skeleton/>
                     ))
